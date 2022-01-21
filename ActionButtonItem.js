@@ -110,6 +110,7 @@ export default class ActionButtonItem extends Component {
       >
         <View>
           <Touchable
+            disabled={this.props.disabled}
             rejectResponderTermination
             testID={this.props.testID}
             accessibilityLabel={this.props.accessibilityLabel}
@@ -182,6 +183,7 @@ export default class ActionButtonItem extends Component {
 
     return (
       <TextTouchable
+        disabled={this.props.disabled}
         rejectResponderTermination
         background={touchableBackground(
           this.props.nativeFeedbackRippleColor,
