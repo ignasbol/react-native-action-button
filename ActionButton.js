@@ -214,6 +214,8 @@ const ActionButton = props => {
       zIndex: props.zIndex
     };
 
+    if (props.disabled) return null;
+
     return (
       <View style={actionStyle} pointerEvents={"box-none"}>
         {actionButtons.map((ActionButton, idx) => (
