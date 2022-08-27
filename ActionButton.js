@@ -1,4 +1,10 @@
-import React, { Component, useState, useRef, useEffect } from "react";
+import React, {
+  Component,
+  useState,
+  useRef,
+  useEffect,
+  useImperativeHandle
+} from "react";
 import PropTypes from "prop-types";
 import {
   StyleSheet,
@@ -17,7 +23,7 @@ import {
   DEFAULT_ACTIVE_OPACITY
 } from "./shared";
 
-const ActionButton = props => {
+const ActionButton = React.forwardRef((props, ref) => {
   const [, setResetToken] = useState(props.resetToken);
   const [active, setActive] = useState(props.active);
   const anim = useRef(new Animated.Value(props.active ? 1 : 0));
@@ -48,6 +54,10 @@ const ActionButton = props => {
       }, 250);
     }
   }, [props.resetToken, props.active]);
+
+  useImperativeHandle(ref, () => ({
+    reset,
+  }));
 
   //////////////////////
   // STYLESHEET GETTERS
@@ -313,7 +323,7 @@ const ActionButton = props => {
       </View>
     </View>
   );
-};
+});
 
 ActionButton.Item = ActionButtonItem;
 
